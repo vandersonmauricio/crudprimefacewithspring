@@ -46,21 +46,20 @@
                 <f:facet name="{Exporters}">
                     <h:commandLink id="exportExcel">
                         <p:graphicImage name="/images/excel.png" width="24"/>
-                        <p:dataExporter type="xls" target="tabelaTarefa" fileName="listaTarefas"/>
+                        <p:dataExporter type="xls" target="tabelaTarefas" fileName="listaTarefas"/>
                     </h:commandLink>
                     <h:commandLink id="exportPDF">
                         <p:graphicImage name="/images/pdf.png" width="24"/>
-                        <p:dataExporter type="pdf" target="tabelaTarefa" fileName="listaTarefas"/>
+                        <p:dataExporter type="pdf" target="tabelaTarefas" fileName="listaTarefas"/>
                     </h:commandLink>
                     <h:commandLink id="exportCSV">
                         <p:graphicImage name="/images/csv.png" width="24"/>
-                        <p:dataExporter type="csv" target="tabelaTarefa" fileName="listaTarefas"/>
+                        <p:dataExporter type="csv" target="tabelaTarefas" fileName="listaTarefas"/>
                     </h:commandLink>
                     <h:commandLink id="exportXML">
                         <p:graphicImage name="/images/xml.png" width="24"/>
-                        <p:dataExporter type="xml" target="tabelaTarefa" fileName="listaTarefas"/>
+                        <p:dataExporter type="xml" target="tabelaTarefas" fileName="listaTarefas"/>
                     </h:commandLink>
-
                 </f:facet>
 
                 <f:facet name="header"><p:outputLabel value="Lista de Tarefas: #{tarefaMB.tamanhoDaLista}"/> </f:facet>
