@@ -88,15 +88,14 @@
                     <h:selectBooleanCheckbox id="checkbox" value="#{item.isFinish}"/>
                 </p:column>
                 <p:column exportable="false" headerText="Ação" style="width: 10%; text-align: center">
-                    <p:commandButton value="deletar" actionListener="#{tarefaMB.deletarById(item.id)}">
-                        <p:ajax update="tabelaTarefas"/>
+                    <p:commandButton value="deletar" actionListener="#{tarefaMB.deletarById(item.id)}" update="tabelaTarefas">
                     </p:commandButton>
                 </p:column>
                 <p:columnGroup type="footer">
                     <p:row>
                         <p:column colspan="5">
                             <p:commandButton value="Export" icon="fa fa-file-excel-o">
-                                <p:dataExporter type="pdf" target="tabelaTarefa" fileName="tarefas" excludeColumns="2"/>
+                                <p:dataExporter type="pdf" target="tabelaTarefas" fileName="tarefas" excludeColumns="2"/>
                             </p:commandButton>
                         </p:column>
                     </p:row>
@@ -116,7 +115,7 @@
             <p:inputTextarea id="prioridade" name="prioridade" required="true"
                              requiredMessage="Informe a prioridade da tarefa"
                              value="#{tarefaMbRequest.tarefa.prioridade}" placeholder="prioridade: 1,2,3"/>
-            <p:commandButton value="Salvar" actionListener="#{tarefaMbRequest.salvarTarefa()}" resetValues="true">
+            <p:commandButton value="Salvar" actionListener="#{tarefaMbRequest.salvarTarefa()}" update="tabelaTarefas" resetValues="true">
 
             </p:commandButton>
 
