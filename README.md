@@ -24,7 +24,7 @@ Este é um projeto de exemplo criado para demonstrar como criar um README atraen
 
 ## Funcionalidades
 
-1. Uma lista de tarefas onde você consegue adicionar uma nova tarefa ou deletar uma tarefa(para carregar ou deletar a tarefa atualizada precisa pressionar o botão de recarregar.)
+1. Uma lista de tarefas onde você consegue adicionar uma nova tarefa ou deletar uma tarefa(para carregar ou deletar a tarefa atualizada precisa pressionar o botão de recarregar a listagem.)
 2. Uma exportação para a página para diferentes tipos de formatos exemplo: pdf, xls.
 3. Um filtro para que o usuário consiga escolher determinada tarefa que ele deseja buscar.
 4. Um contador que mostrar quantas tarefas existem na minha tabela.
