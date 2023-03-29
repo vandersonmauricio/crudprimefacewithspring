@@ -43,24 +43,11 @@ public class TarefaMB {
     }
 
 
-    public void salvarTarefa() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        String descricao = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{tarefaMB.tarefa.descricao}", String.class);
-        Integer prioridade = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{tarefaMB.tarefa.prioridade}", Integer.class);
-
-        Tarefa novaTarefa = new Tarefa();
-        novaTarefa.setDescricao(descricao);
-        novaTarefa.setPrioridade(prioridade);
-        novaTarefa.setIsFinish(false);
-        tarefaController.incluir(novaTarefa);
-    }
-
-
     public Integer getTamanhoDaLista() {
         return tarefas.size();
     }
 
     public void setTamanhoDaLista(Integer size) {
-        // Método criado para ser utilizado pelo primefaces
+
     }
 }
