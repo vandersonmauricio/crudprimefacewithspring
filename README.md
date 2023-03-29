@@ -21,6 +21,8 @@ Este é um projeto de exemplo criado para demonstrar como criar um README atraen
 
 4. para acessar a página tarefas.xhtml só seguir esse caminho : http://localhost:8080/tarefas.jr 
 
+5. Instale o MySQL ou utilize o docker.
+
 
 ## Funcionalidades
 
