@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xml:lang="pt-br"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <script type="text/javascript">
+        //<![CDATA[
+        function start() {
+            PF('statusDialog').show();
+        }
+
+        function stop() {
+            PF('statusDialog').hide();
+        }
+
+        //]]>
+    </script>
+    <title>Lista de Tarefas</title>
+</h:head>
+<f:view>
+    <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false"
+              resizable="false">
+        <p:graphicImage name="/images/ajaxloadingbar.gif"/>
+    </p:dialog>
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+    <h:body>
+        <h:form id="formTarefas" prependId="false">
+            <h:commandLink action="#{tarefaMB.listarTodos}" value="Recarregar a listagem!">
+                <p:graphicImage name="/images/refresh.png" alt="Recarregar listagem!" width="24"/>
+            </h:commandLink>
+            <p:growl id="mensagens" showDetail="true" autoUpdate="true" closable="true">
+                <p:autoUpdate/>
+            </p:growl>
+            <p:dataTable id="tabelaTarefas" var="item" value="#{tarefaMB.tarefas}" prependId="false"
+                         paginator="true" rows="25" emptyMessage="Não há tarefas cadastradas."
+                         rowKey="#{item.id}" selectionMode="single"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}
+                         {RowsPerPageDropdown} {Exporters}"
+                         selection="#{tarefaMB.tarefa}"
+                         rowsPerPageTemplate="10,15,25,50,100">
+                <f:facet name="{Exporters}">
+                    <h:commandLink id="exportExcel">
+                        <p:graphicImage name="/images/excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tabelaTarefa" fileName="listaTarefas"/>
+                    </h:commandLink>
+                    <h:commandLink id="exportPDF">
+                        <p:graphicImage name="/images/pdf.png" width="24"/>
+                        <p:dataExporter type="pdf" target="tabelaTarefa" fileName="listaTarefas"/>
+                    </h:commandLink>
+                    <h:commandLink id="exportCSV">
+                        <p:graphicImage name="/images/csv.png" width="24"/>
+                        <p:dataExporter type="csv" target="tabelaTarefa" fileName="listaTarefas"/>
+                    </h:commandLink>
+                    <h:commandLink id="exportXML">
+                        <p:graphicImage name="/images/xml.png" width="24"/>
+                        <p:dataExporter type="xml" target="tabelaTarefa" fileName="listaTarefas"/>
+                    </h:commandLink>
+
+                </f:facet>
+
+                <f:facet name="header"><p:outputLabel value="Lista de Tarefas: #{tarefaMB.tamanhoDaLista}"/> </f:facet>
+                <p:column headerText="Id" style="width: 6%;" sortBy="#{item.id}"
+                          filterMatchMode="contains"
+                          filterBy="#{item.id}">
+                    <h:outputText id="outputId"
+                                  value="#{item.id}"/>
+
+                </p:column>
+                <p:column headerText="Prioridade" style="width: 25%;" sortBy="#{item.prioridade}"
+                          filterMatchMode="contains"
+                          filterBy="#{item.prioridade}">
+                    <h:outputText id="outputPrioridade"
+                                  value="#{item.prioridade}"/>
+                </p:column>
+                <p:column headerText="Descricao" style="width: 10%;" sortBy="#{item.descricao}"
+                          filterBy="#{item.descricao}">
+                    <h:outputText value="#{item.descricao}"/>
+                </p:column>
+                <p:column headerText="Data Cadastro" style="width: 10%;" sortBy="#{item.dataCadastro}"
+                          filterBy="#{item.dataCadastro}">
+                    <h:outputText value="#{item.dataCadastro}"/>
+                </p:column>
+                <p:column headerText="Tarefa Concluida" style="width: 10%; text-align: center">
+                    <h:selectBooleanCheckbox id="checkbox" value="#{item.isFinish}"/>
+                </p:column>
+                <p:column exportable="false" headerText="Ação" style="width: 10%; text-align: center">
+                    <p:commandButton value="deletar" actionListener="#{tarefaMB.deletarById(item.id)}">
+                        <p:ajax update="tabelaTarefas"/>
+                    </p:commandButton>
+                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column colspan="5">
+                            <p:commandButton value="Export" icon="fa fa-file-excel-o">
+                                <p:dataExporter type="pdf" target="tabelaTarefa" fileName="tarefas" excludeColumns="2"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:row>
+                </p:columnGroup>
+
+            </p:dataTable>
+        </h:form>
+        <h:form id="formAddTask" style="text-align: center;
+        display: grid;">
+            <p:panel style="background: #c2dfef" headerText="adicionar uma tarefa">
+                Adicionar uma tarefa
+            </p:panel>
+
+            <p:inputTextarea id="descricao" name="descricao" required="true"
+                             requiredMessage="Informe a descricao da tarefa" value="#{tarefaMbRequest.tarefa.descricao}"
+                             placeholder="descricao da tarefa"/>
+            <p:inputTextarea id="prioridade" name="prioridade" required="true"
+                             requiredMessage="Informe a prioridade da tarefa"
+                             value="#{tarefaMbRequest.tarefa.prioridade}" placeholder="prioridade: 1,2,3"/>
+            <p:commandButton value="Salvar" actionListener="#{tarefaMbRequest.salvarTarefa()}" resetValues="true">
+
+            </p:commandButton>
+
+        </h:form>
+    </h:body>
+</f:view>
+</html>
