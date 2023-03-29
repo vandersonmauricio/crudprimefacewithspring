@@ -33,6 +33,10 @@ Este é um projeto de exemplo criado para demonstrar como criar um README atraen
 7. Uma validação no front-end para que os campos do adicionar tarefa sejam preenchidos.
 8. Filtro de paginação de minhas tarefas.
 
+
+## Em desenvolvimento
+1.Testes unitários(80%concluido)
+
 ## Contribuindo
 
 Sinta-se livre para contribuir para este projeto enviando pull requests ou reportando problemas na seção de Issues.
