@@ -29,4 +29,8 @@ public class Tarefa {
 
     private Boolean isFinish;
 
+    public Tarefa(String descriptiontest, int prioridade) {
+        this.descricao=descriptiontest;
+        this.prioridade=prioridade;
+    }
 }
