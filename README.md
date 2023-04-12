@@ -1,6 +1,5 @@
 # Projeto de spring com primefaces
 
-Este é um projeto de exemplo criado para demonstrar como criar um README atraente e organizado no GitHub.
 
 ## Tecnologias utilizadas
 
